@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void Update(){
+    void FixedUpdate(){
         Vector2 Input = new Vector2(joystick.Horizontal, 0); // Nhận giá trị từ joystick
         rb.MovePosition((Vector2) transform.position + Input * 10 * Time.deltaTime);
         if(Input.x > 0){
