@@ -16,9 +16,15 @@ public class PlayerShooting : MonoBehaviour
         Vector2 Input = new Vector2(joystick.Horizontal, joystick.Vertical); // Nhận giá trị từ joystick
         rb.MovePosition((Vector2) Sign.position + Input * 10 * Time.deltaTime);
 
-        // Xoay Hand theo vị trí của Sign (giữ nguyên như cũ)
-        Vector3 relative = Hand.InverseTransformPoint(Sign.position);
-        float angle = Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
-        Hand.Rotate(0, 0, angle);
+        if(Input.x > 0){
+            transform.rotation = Quaternion.Euler(0,0,0);
+            GetComponent<Animator>().SetInteger("Mode", 1);
+        }
+        else if(Input.x < 0){
+            transform.rotation = Quaternion.Euler(0,180,0);
+            GetComponent<Animator>().SetInteger("Mode", 1);
+        }else{
+            GetComponent<Animator>().SetInteger("Mode", 0);
+        }
     }
 }

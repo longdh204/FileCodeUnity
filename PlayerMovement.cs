@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate(){
         Vector2 Input = new Vector2(joystick.Horizontal, 0); // Nhận giá trị từ joystick
-        rb.MovePosition((Vector2) transform.position + Input * 10 * Time.deltaTime);
+        rb.velocity = new Vector2(joystick.Horizontal * 500 * Time.deltaTime, this.rb.velocity.y);
         if(Input.x > 0){
             transform.rotation = Quaternion.Euler(0,0,0);
             GetComponent<Animator>().SetInteger("Mode", 1);
@@ -25,5 +25,8 @@ public class PlayerMovement : MonoBehaviour
         }else{
             GetComponent<Animator>().SetInteger("Mode", 0);
         }
+    }
+        public void Jump(){
+        rb.velocity = new Vector2(0,60);
     }
 }
